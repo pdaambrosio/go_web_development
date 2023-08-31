@@ -1,2 +1,3 @@
 # go_web_development
-GO Web Development Labs
+
+GO Web Development Labs and Projects
