@@ -1,37 +1,31 @@
 package main
 
 import (
-	"log"
+	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 )
 
-func HomePageHandler(w http.ResponseWriter, r *http.Request) {
-	page, err := os.ReadFile("static/index.html")
+func StaticHandler(w http.ResponseWriter, r *http.Request) {
+	page, err := os.Open("static" + r.URL.Path + ".html")
 
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("404 Not Found"))
-		log.Fatal(err)
+		fmt.Println(err)
+		return
 	}
 
-	w.Write(page)
-}
-
-func AboutHandler(w http.ResponseWriter, r *http.Request) {
-	page, err := os.ReadFile("static/about.html")
-
-	if err != nil {
-		w.WriteHeader(http.StatusNotFound)
-		w.Write([]byte("404 Not Found"))
-		log.Fatal(err)
+	if strings.HasSuffix(r.URL.Path, ".css") {
+		w.Header().Add("Content-Type", "text/css")
 	}
 
-	w.Write(page)
+	io.Copy(w, page)
 }
 
 func main() {
-	http.HandleFunc("/", HomePageHandler)
-	http.HandleFunc("/about", AboutHandler)
+	http.HandleFunc("/", StaticHandler)
 	http.ListenAndServe(":8080", nil)
 }
