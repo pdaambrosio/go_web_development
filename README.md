@@ -66,7 +66,6 @@ go build .
 
 Remenber that cache mode not reflect the change of the template file. You need to recompile the binary file to reflect the change.
 
-
 ```bash
 ./lab3
 ```
