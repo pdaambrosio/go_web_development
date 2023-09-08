@@ -1,6 +1,11 @@
 package main
 
-import "html/template"
+import (
+	"fmt"
+	"html/template"
+	"net/http"
+	"time"
+)
 
 type Config struct {
 	Port    string
@@ -11,4 +16,17 @@ type Config struct {
 type App struct {
 	Config Config
 	Cache  map[string]*template.Template
+}
+
+func (a *App) Start() error {
+	srv := &http.Server{
+		Addr: fmt.Sprintf(":%s", a.Config.Port),
+		IdleTimeout: 30 * time.Second,
+		ReadTimeout: 10 * time.Second,
+		ReadHeaderTimeout: 5 * time.Second,
+		WriteTimeout: 5 * time.Second,
+		Handler: a.Routes(),
+	}
+
+	return srv.ListenAndServe()
 }

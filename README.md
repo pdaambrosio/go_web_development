@@ -80,3 +80,34 @@ curl -v localhost:8080/about.html
 Or you can use browser to access the server.
 
 Finished code is in the `lab3` folder.
+
+### Lab 4
+
+In the Lab4, we will use the `gorilla/mux` package to implement the server. It's is other comcept to implement the server.
+The `gorilla/mux` package is a powerful URL router and dispatcher. It's a good way to implement the RESTful API.
+
+```bash
+./lab4
+```
+
+or
+
+The parameters "-port" and "-env" are optional. The default port is 8080 and the default enviroment is "dev".
+Cache mode is the same as Lab3.
+Remenber that cache mode not reflect the change of the template file. You need to recompile the binary file to reflect the change.
+
+```bash
+./lab4 -port 3000 -env "prod"
+```
+
+Fo testing the server, you can use curl command.
+
+```bash
+curl -v localhost:8080
+curl -v localhost:8080/about
+curl -v localhost:8080/contact
+```
+
+Or you can use browser to access the server.
+
+Finished code is in the `lab4` folder.
