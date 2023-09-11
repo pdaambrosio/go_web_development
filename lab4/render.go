@@ -7,6 +7,9 @@ import (
 	"net/http"
 )
 
+// The `func (a *App) RenderTemplate(w http.ResponseWriter, page string)` function is a method of the
+// `App` struct. It is responsible for rendering a template and sending the rendered HTML to the
+// `http.ResponseWriter` provided.
 func (a *App) RenderTemplate(w http.ResponseWriter, page string) {
 
 	var t *template.Template
