@@ -113,3 +113,36 @@ Or you can use browser to access the server.
 Finished code is in the `lab4` folder.
 
 ### Lab 5
+
+The Lab5 is looks like the same as Lab4, but with bootstap navbar in static files.
+And the Lab5 compile use the `go:embed` directive to embed the static files into the binary file.
+The `go:embed` directive is a new feature in Go 1.16. It's a good way to embed the static files into the binary file.
+
+Embed the static files into the binary file is a good way to deploy the server. You don't need to deploy the static files to the server.
+And you can use the same binary file to deploy to different enviroment. It's a good way to deploy the server.
+See information about `go:embed` directive in [Go 1.16 Release Notes](https://golang.org/doc/go1.16#library-embed).
+
+```bash
+./lab5
+```
+
+or
+
+The parameters "-port" and "-env" are optional. The default port is 8080 and the default enviroment is "dev".
+Cache mode is the same as Lab3.
+
+```bash
+./lab5 -port 3000 -env "prod"
+```
+
+Fo testing the server, you can use curl command.
+
+```bash
+curl -v localhost:8080
+curl -v localhost:8080/about
+curl -v localhost:8080/contact
+```
+
+Or you can use browser to access the server.
+
+Finished code is in the `lab5` folder.

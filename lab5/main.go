@@ -6,6 +6,8 @@ import (
 	"log"
 )
 
+// The main function initializes a cache, parses command line flags to set configuration values,
+// creates an App instance, logs server information, and starts the application.
 func main() {
 	cache := make(map[string]*template.Template)
 
